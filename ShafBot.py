@@ -28,15 +28,6 @@ async def on_ready():
     game = discord.Game('=help')
     await bot.change_presence(activity=game)
 
-@bot.event
-async def on_message(msg):
-    if msg.guild.id == 692515490706227232: # the not so christian "christian" server
-        if msg.author.id == 120555618963685376: # omri
-            if random.random() > 0.6:
-                await msg.add_reaction("<:omri:715678198251388979>") #omri reaction
-
-    await bot.process_commands(msg)
-
 @bot.command(help="Give a hug to someone!")
 async def hug(ctx, user : discord.User):
     with open('hugs.json', 'r') as f:
