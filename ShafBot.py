@@ -143,4 +143,18 @@ async def poll(ctx):
     with open('polls.data', 'wb') as f:
         pickle.dump(polls, f)
         
+@bot.command(name='choose', help="Get help choosing a random option! \
+\nSyntax: \n=random {option 1} {option 2..n}")
+async def choose(ctx):
+    args = shlex.split(ctx.message.content[1:])
+    args.pop(0) # command
+
+    if not args:
+        await ctx.send('Nothing to choose...')
+        return
+    
+    random_choice = random.choice(args)
+
+    await ctx.send(random_choice)        
+        
 bot.run('API key goes here')
